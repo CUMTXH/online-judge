@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ex.boot.mapper.NoteMapper">
+
+    <resultMap id="NoteResultMap" type="com.ex.boot.model.Note">
+        <id property="noteId" column="note_id" />
+        <result property="userId" column="user_id" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
+        <collection property="tags" ofType="java.lang.Long"
+                    column="note_id" select="findTagIdsByNoteId" />
+    </resultMap>
+
+    <select id="findByUserId" resultMap="NoteResultMap">
+        SELECT * FROM notes WHERE user_id = #{userId}
+    </select>
+
+    <select id="findTagIdsByNoteId" resultType="java.lang.Long">
+        SELECT tag_id FROM note_tags WHERE note_id = #{noteId}
+    </select>
+
+
+    <insert id="insert" parameterType="com.ex.boot.model.Note" useGeneratedKeys="true" keyProperty="noteId">
+        INSERT INTO notes (user_id, title, content, type)
+        VALUES (#{userId}, #{title}, #{content}, #{type})
+    </insert>
+
+    <update id="update" parameterType="com.ex.boot.model.Note">
+        UPDATE notes
+        SET
+            title = #{title},
+            content = #{content},
+            updated_at = NOW(),
+            type = #{type},
+            input = #{input}
+        WHERE
+            note_id = #{noteId} AND user_id = #{userId}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM notes WHERE note_id = #{noteId}
+    </delete>
+
+
+
+</mapper>

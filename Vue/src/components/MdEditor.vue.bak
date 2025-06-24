@@ -1,0 +1,47 @@
+<!-- <template>
+    <v-md-editor v-model="content" :mode="mode" :height="height" @upload-image="handleUploadImage" />
+</template>
+  
+<script setup lang="ts">
+import { ref,computed } from 'vue'
+
+const props = defineProps({
+    mode: {
+        type: String as () => 'edit' | 'preview',
+        default: 'edit',
+    },
+    height: {
+        type: String,
+        default: '440px',
+    },
+    modelValue: {
+        type: String,
+        required: true
+    },
+})
+
+const emit = defineEmits(['update:modelValue'])
+
+const content = computed({
+    get: () => props.modelValue,
+    set: val => emit('update:modelValue', val)
+})
+
+const text = ref('## Hello from Vite-SSG!\n\nStart writing your markdown here...')
+
+const handleUploadImage = async (event: Event, insertImage: (url: string) => void) => {
+    const file = (event.target as HTMLInputElement).files?.[0]
+    if (!file) return
+
+    // 这里替换为你的实际图片上传逻辑（如调用 API）
+    const mockUpload = (file: File): Promise<string> =>
+        new Promise((resolve) => {
+            const reader = new FileReader()
+            reader.onload = (e) => resolve(e.target?.result as string)
+            reader.readAsDataURL(file)
+        })
+
+    const url = await mockUpload(file)
+    insertImage(url)
+}
+</script> -->

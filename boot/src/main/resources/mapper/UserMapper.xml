@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 确保namespace与Mapper接口全限定名一致 -->
+<mapper namespace="com.ex.boot.mapper.UserMapper">
+
+    <!-- 显式定义结果映射 -->
+    <resultMap id="UserResultMap" type="com.ex.boot.model.User">
+        <id property="userId" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <!-- 查询语句使用resultMap -->
+    <select id="findByUsername" resultMap="UserResultMap">
+        SELECT
+            user_id,
+            username,
+            password
+        FROM users
+        WHERE username = #{username}
+    </select>
+
+    <!-- 插入语句 -->
+    <insert id="insertUser" parameterType="com.ex.boot.model.User">
+        INSERT INTO users (
+            username,
+            password,
+            created_at
+        ) VALUES (
+                     #{username},
+                     #{password},
+                     #{createdAt}
+                 )
+    </insert>
+</mapper>

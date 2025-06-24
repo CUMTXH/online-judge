@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ex.boot.mapper.NoteTagMapper">
+
+    <resultMap id="NoteTagResultMap" type="com.ex.boot.model.NoteTag">
+        <id property="noteId" column="note_id"/>
+        <result property="tagId" column="tag_id"/>
+    </resultMap>
+
+    <select id="getTagsByNoteId" resultType="com.ex.boot.model.Tag">
+        SELECT t.* FROM tags t
+                            JOIN note_tags nt ON t.id = nt.tag_id
+        WHERE nt.note_id = #{noteId}
+    </select>
+
+    <insert id="insertNoteTag">
+        INSERT INTO note_tags (note_id, tag_id)
+        VALUES (#{noteId}, #{tagId})
+    </insert>
+
+    <insert id="insertNoteTags">
+        INSERT INTO note_tags (note_id, tag_id)
+        VALUES
+        <foreach collection="tagIds" item="tagId" separator=",">
+            (#{noteId}, #{tagId})
+        </foreach>
+    </insert>
+
+<!--    <update id="updateNoteTags" parameterType="">-->
+
+<!--    </update>-->
+
+    <delete id="deleteTagsByNoteId">
+        DELETE FROM note_tags WHERE note_id = #{noteId}
+    </delete>
+
+    <delete id="deleteTagsByNoteIdAndTagId">
+        DELETE FROM note_tags WHERE note_id = #{noteId} AND tag_id =#{tagId}
+    </delete>
+
+</mapper>

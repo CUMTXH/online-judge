@@ -1,0 +1,26 @@
+# 通用忽略
+.DS_Store
+*.log
+*.tmp
+*.swp
+
+# Java/Maven 忽略
+/target/
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
+# Node.js/Vue 忽略
+/node_modules/
+/dist/
+npm-debug.log
+.vscode/
+
+# Docker 忽略
+.env
+docker-compose.override.yml
+
+# IDE 忽略
+.idea/
+*.iml
