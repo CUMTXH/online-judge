@@ -44,7 +44,7 @@ onlinejudge/
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/yourname/onlinejudge.git
+git clone https://github.com/CUMTXH/online-judge
 cd onlinejudge
 ````
 
@@ -72,7 +72,7 @@ sudo docker-compose up -d --build
 
 ```env
 MYSQL_ROOT_PASSWORD=rootpass
-MYSQL_DATABASE=online_judge
+MYSQL_DATABASE=note
 MYSQL_USER=ojuser
 MYSQL_PASSWORD=ojpassword
 ```

@@ -7,14 +7,16 @@ services:
     container_name: oj-mysql
     restart: always
     environment:
+      TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: online_judge
+      MYSQL_DATABASE: note
       MYSQL_USER: ojuser
       MYSQL_PASSWORD: ojpassword
     ports:
       - "3306:3306"
     volumes:
       - db-data:/var/lib/mysql
+      - ./boot/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   backend:
     build:
@@ -26,7 +28,8 @@ services:
     ports:
       - "8081:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/online_judge?useSSL=false&serverTimezone=UTC
+      TZ: Asia/Shanghai
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/note?useSSL=false&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: ojuser
       SPRING_DATASOURCE_PASSWORD: ojpassword
 
@@ -42,6 +45,8 @@ services:
     depends_on:
       - backend
     restart: always
+    environment:
+      TZ: Asia/Shanghai
 
 volumes:
   db-data:
