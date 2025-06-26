@@ -39,6 +39,39 @@ onlinejudge/
 
 ---
 
+## 🗂️ 新手入门
+
+1. 你需要有一个 GitHub 账号，并登录 [GitHub 官网](https://github.com)。
+2. 在本地生成SSH密钥。
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+3. 将生成的公钥内容（id_rsa.pub）添加到你的 GitHub 账户的 SSH keys。
+4. 测试 SSH 连接：
+```bash
+ssh -T git@github.com
+```
+5. 拉取项目 
+```bash
+git clone https://github.com/CUMTXH/online-judge
+```
+6. 如果需要推送，记得在本地绑定账号
+```bash
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+```
+7. 添加所有文件并提交：
+   ```bash
+   git add .
+   git commit -m "init"
+   ```
+8. 推送到 GitHub（首次推送建议加 -u 参数）：
+   ```bash
+   git push -u origin dev
+   ```
+
+---
+
 ## 🧱 快速启动（推荐使用 Docker Compose）
 
 ### 1. 克隆项目
