@@ -57,18 +57,18 @@ git clone https://github.com/CUMTXH/online-judge
 ```
 6. 如果需要推送，记得在本地绑定账号
 ```bash
-  git config --global user.email "you@example.com"
-  git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
 ```
 7. 添加所有文件并提交：
-   ```bash
-   git add .
-   git commit -m "init"
-   ```
+```bash
+git add .
+git commit -m "init"
+```
 8. 推送到 GitHub（首次推送建议加 -u 参数）：
-   ```bash
-   git push -u origin dev
-   ```
+```bash
+git push -u origin dev
+```
 
 ---
 
