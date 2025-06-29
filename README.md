@@ -81,9 +81,10 @@ git clone https://github.com/CUMTXH/online-judge
 cd onlinejudge
 ````
 
-### 2. 运行容器（首次构建可能较慢）
+### 2. 下载docker并运行容器（首次构建可能较慢）
 
 ```bash
+sudo snap install docker 
 sudo docker-compose up -d --build
 ```
 
